@@ -5,7 +5,7 @@ import Papa from "papaparse";
 const SHEET_ID = "19kQgcSz620MQDpZgP3264RsaJETmcRZac6UKyjArAuM";
 const SHEET_NAME = "Sheet1";
 
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQFlgm-iSbmHzsUAzqTX5a5YjSlrg_WV-HX9wZMYiOSN3bpmyBAeg62bUD1grVIWVUQjYi_EfSaUUiv/pub?output=csv`;
 
 const SITE_TITLE = "They Place";
 const SITE_URL = "https://sites.google.com/view/they-place";
