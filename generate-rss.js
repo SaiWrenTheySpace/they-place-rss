@@ -19,11 +19,11 @@ async function run() {
 
   const items = parsed.map(post => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
-      <link>${post.url}</link>
-      <guid>${post.url}</guid>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <description><![CDATA[${post.description || ""}]]></description>
+      <title><![CDATA[${post.Title}]]></title>
+      <link>${post.URL}</link>
+      <guid>${post.URL}</guid>
+      <pubDate>${new Date(post.Date).toUTCString()}</pubDate>
+      <description><![CDATA[${post.Description || ""}]]></description>
     </item>
   `).join("\n");
 
