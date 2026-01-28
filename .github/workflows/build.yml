@@ -1,23 +1,37 @@
-name: Build RSS
+name: Generate RSS Feed
 
 on:
   schedule:
-    - cron: "0 * * * *" # every hour
-  workflow_dispatch:
+    - cron: '0 */6 * * *'  # Run every 6 hours
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - run: npm install
-      - run: node generate-rss.js
-      - run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add rss.xml
-          git commit -m "Update RSS feed" || echo "No changes"
-          git push
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Generate RSS feed
+      run: node generate-rss.js
+      
+    - name: Commit and push if changed
+      run: |
+        git config --global user.name 'GitHub Action'
+        git config --global user.email 'action@github.com'
+        git add -A
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update RSS feed [skip ci]" && git push)
